@@ -44,7 +44,9 @@
 
     <!-- 游戏结束 -->
     <div class="game-play-over" v-if="gameStatus === 3">
-      游戏结束
+      <!-- <div class="end-title">游戏结束</div> -->
+      <div class="end-score">本局得分: {{showGameScore}}</div>
+      <img src="./img/btn-again.png" alt="再来一次" class="again-btn" @click="clearGameAndAgain">
     </div>
   </div>
 </template>
@@ -125,6 +127,9 @@ export default {
     },
   },
   methods: {
+    clearGameAndAgain() {
+      this.$store.commit('game/setGameStatus', 1);
+    },
     startGame() {
       const vm = this;
       console.log('请求开始成功');
@@ -154,13 +159,12 @@ export default {
     },
     getRandomType(dropSign) {
       switch (dropSign) {
-        case 'y': return 1; break; // 金币
-        case 't': return 2; break; // 银币
-        case 'z': return 3; break; // 铜币
-        case 'j': return 4; break; // 炸弹
-        default: return 4; break; // 炸弹
+        case 'y': return 1;; // 金币
+        case 't': return 2;; // 银币
+        case 'z': return 3;; // 铜币
+        case 'j': return 4;; // 炸弹
+        default: return 4;; // 炸弹
       }
-      return 4;
     },
     init() {
       const vm = this;
@@ -206,8 +210,8 @@ export default {
                 }
               }, 300);
 
-              // 加减分（可以为负）
-              vm.gameScore += getScore;
+              // 加减分（不可为负）
+              vm.gameScore = vm.gameScore + getScore >= 0 ? vm.gameScore + getScore : 0;
             }
           }
         });
@@ -389,10 +393,24 @@ export default {
     position: relative;
     background-color: rgba(1, 55, 86, 0.8);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    font-size: 32px;
+    flex-wrap: nowrap;
+    .end-title {
+      color: #fff;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+    .end-score {
+      color: #fff;
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+    .again-btn {
+      width: 200px;
+      display: block;
+    }
   }
 }
 
@@ -413,13 +431,4 @@ export default {
     transform: translateX(-50%);
   }
 }
-
-// @keyframes musicRotate {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
 </style>
