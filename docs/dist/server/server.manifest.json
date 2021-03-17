@@ -1,0 +1,19 @@
+{
+  "entry": "server.js",
+  "files": {
+    "components/game-box.js": "components/game-box.js",
+    "components/game-container.js": "components/game-container.js",
+    "components/game-drop.js": "components/game-drop.js",
+    "components/game-play.js": "components/game-play.js",
+    "pages/index.js": "pages/index.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "components/game-box.js": "components/game-box.js.map",
+    "components/game-container.js": "components/game-container.js.map",
+    "components/game-drop.js": "components/game-drop.js.map",
+    "components/game-play.js": "components/game-play.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "server.js": "server.js.map"
+  }
+}
