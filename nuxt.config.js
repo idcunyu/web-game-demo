@@ -15,6 +15,8 @@ export default {
     ]
   },
 
+  target: 'static',
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -36,5 +38,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  router: {
+    base: '/web-game-demo'
+  },
+
+  generate: {
+    dir: 'docs'
   }
 }
